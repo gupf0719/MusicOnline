@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "MusicOnline/MusicOnline/routers"
+	_ "MusicOnline/MusicOnline/models"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
