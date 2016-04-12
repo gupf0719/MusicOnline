@@ -13,4 +13,5 @@ func init() {
 	beego.Router("/news", &controllers.NewsController{})
 	beego.Router("/search", &controllers.SearchController{})
 	beego.Router("/stage", &controllers.StageController{})
+	beego.Router("/register", &controllers.RegisterController{})
 }

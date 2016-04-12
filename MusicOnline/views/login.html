@@ -4,24 +4,34 @@
 	</head>
 
 	<body>
+		<div class="navbar navbar-default navbar-inverse  navbar-fixed-top">
+			<div class="container">
+				{{template "navbar" .}}
+			</div>
+		</div>
+		<div class="page-header">
 		<div class="container" style="width: 500px">
 			<form method="POST" action="/login">
   				<div class="form-group">
-    				<label >Account</label>
-   					<input id="uname" class="form-control" placeholder="Enter Account" name="uname">
+    				<label >帐  号</label>
+   					<input id="uname" class="form-control" placeholder="Enter Account" name="uname" style="width: 250px">
   				</div>
   				<div class="form-group">
-    				<label >Password</label>
-    				<input id="pwd" type="password" class="form-control" placeholder="Password" name="pwd">
+    				<label >密  码</label>
+    				<input id="pwd" type="password" class="form-control" placeholder="Enter Password" name="pwd" style="width: 250px">
   				</div>
 				<div class="checkbox">
 				    <label>
 				    <input type="checkbox" name="autoLogin"> AutoLogin
 				    </label>
 				</div>
-				<button type="submit" class="btn btn-default" onclick="return checkInput();">Login</button>
-				<button class="btn btn-default" onclick="return goRegister();">Register</button>
+				<br/>
+				<button type="submit" class="btn btn-default" onclick="return checkInput();">登录 </button>
+				&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-default" onclick="return goRegister();">注册</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<button class="btn btn-default" onclick="return backHome();">Back</button>
+				<br/><br/>
 			</form>
 
 			<script type="text/javascript">
@@ -51,6 +61,7 @@
 					return false;
 				}
 			</script>
+		</div>
 		</div>
 	</body>
 </html>

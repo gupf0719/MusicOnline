@@ -1,0 +1,60 @@
+{{template "header"}}
+
+		<title>Register - MusicOnline</title>
+	</head>
+
+	<body>
+		<div class="navbar navbar-default navbar-inverse  navbar-fixed-top">
+			<div class="container">
+				{{template "navbar" .}}
+			</div>
+		</div>
+
+		<div class="page-header">
+		<div class="container" style="width: 500px">
+			<form method="POST" action="/register">
+  				<div class="form-group">
+    				<label >帐号</label>
+   					<input id="uname" class="form-control" placeholder="Enter Account" name="uname" style="width: 250px">
+  				</div>
+  				<div class="form-group">
+    				<label >密码</label>
+    				<input id="pwd" type="password" class="form-control" placeholder="Enter Password" name="pwd" style="width: 250px">
+  				</div>
+				<div class="form-group">
+    				<label >昵称</label>
+   					<input id="uname" class="form-control" placeholder="Enter NickName" name="nname" style="width: 250px">
+  				</div>
+				<br/>
+				<button type="submit" class="btn btn-default" onclick="return checkInput();">Register</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-default" onclick="return backHome();">Back</button>
+				<br/><br/>
+			</form>
+
+			<script type="text/javascript">
+				function checkInput(){
+					var uname = document.getElementById("uname");
+					if(uname.value.length == 0){
+						alert("please input account");
+						return false
+					}
+
+					var pwd = document.getElementById("pwd");
+					if(pwd.value.length == 0){
+						alert("please input pwd");
+						return false
+					}
+
+					return true
+				}
+
+				function backHome(){
+					window.location.href = "/";
+					return false;
+				}
+			</script>
+		</div>
+		</div>
+	</body>
+</html>
