@@ -1,0 +1,56 @@
+{{template "header"}}
+
+		<title>Login - MusicOnline</title>
+	</head>
+
+	<body>
+		<div class="container" style="width: 500px">
+			<form method="POST" action="/login">
+  				<div class="form-group">
+    				<label >Account</label>
+   					<input id="uname" class="form-control" placeholder="Enter Account" name="uname">
+  				</div>
+  				<div class="form-group">
+    				<label >Password</label>
+    				<input id="pwd" type="password" class="form-control" placeholder="Password" name="pwd">
+  				</div>
+				<div class="checkbox">
+				    <label>
+				    <input type="checkbox" name="autoLogin"> AutoLogin
+				    </label>
+				</div>
+				<button type="submit" class="btn btn-default" onclick="return checkInput();">Login</button>
+				<button class="btn btn-default" onclick="return goRegister();">Register</button>
+				<button class="btn btn-default" onclick="return backHome();">Back</button>
+			</form>
+
+			<script type="text/javascript">
+				function checkInput(){
+					var uname = document.getElementById("uname");
+					if(uname.value.length == 0){
+						alert("please input account");
+						return false
+					}
+
+					var pwd = document.getElementById("pwd");
+					if(pwd.value.length == 0){
+						alert("please input pwd");
+						return false
+					}
+
+					return true
+				}
+
+				function goRegister(){
+					window.location.href = "/register";
+					return false;
+				}
+
+				function backHome(){
+					window.location.href = "/";
+					return false;
+				}
+			</script>
+		</div>
+	</body>
+</html>
