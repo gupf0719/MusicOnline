@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"MusicOnline/MusicOnline/models"
+
 	"github.com/astaxie/beego"
 )
 
@@ -10,18 +12,18 @@ type RegisterController struct {
 
 func (this *RegisterController) Get() {
 	this.TplName = "register.html"
+
 }
 
-/*
 func (this *RegisterController) Post() {
-	uname := this.Input().Get("uname")
-	pwd := this.Input().Get("pwd")
 
-	err := models.AddUser(uname, pwd)
-	if err != nil {
-		beego.Error(err)
-	}
-	this.Redirect("/", 301)
-	return
+	this.TplName = "register.html"
+
+	name := this.Input().Get("uname")
+	password := this.Input().Get("pwd")
+	nickname := this.Input().Get("nname")
+
+	user := models.User{Name: name, Password: password, NickName: nickname}
+
+	models.AddUser(&user)
 }
-*/

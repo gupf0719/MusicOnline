@@ -1,6 +1,8 @@
 package models
 
 import (
+	"strings"
+
 	"github.com/astaxie/beego/orm"
 )
 
@@ -16,13 +18,38 @@ func init() {
 }
 
 func AddUser(m *User) error {
-
 	o := orm.NewOrm()
 
-	_, err := o.Insert(m)
+	user := new(User)
+	qs := o.QueryTable("user")
+	err := qs.Filter("name", m.Name).One(user)
 	if err != nil {
-		return err
+		_, err := o.Insert(m)
+		if err != nil {
+			return err
+		}
+		return nil
 	}
 
-	return err
+	return nil
+}
+
+func IsExist(uname string, password string) bool {
+	o := orm.NewOrm()
+
+	user := new(User)
+	qs := o.QueryTable("user")
+	err := qs.Filter("name", uname).One(user)
+	if err != nil {
+		error.Error(err)
+	}
+
+	var exist bool
+	if strings.EqualFold(password, user.Password) {
+		exist = true
+		return exist
+	} else {
+		exist = false
+		return exist
+	}
 }

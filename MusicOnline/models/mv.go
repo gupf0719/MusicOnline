@@ -13,3 +13,43 @@ type Mv struct {
 func init() {
 	orm.RegisterModel(new(Mv))
 }
+
+func AddMv(m *Mv) error {
+	o := orm.NewOrm()
+	_, err := o.Insert(m)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func ModifyMv(m *Singer) error {
+	o := orm.NewOrm()
+
+	mv := new(Singer)
+
+	qs :=o.QueryTable("mv")
+	err :=qs.Filter("id",m.Id).One(mv)
+	if err != nil {
+			return err
+	}
+
+	mv.Name=m.Name
+	mv.Image=m.Image
+
+	_, err = o.Update(mv)
+	if err != nil {
+			return err
+	}
+	return nil
+}
+
+func DelMv(id int64) error {
+	o := orm.NewOrm()
+
+	_, err := o.Delete(&Mv{Id: id})
+	if err != nil {
+		return err
+	}
+	return nil
+}

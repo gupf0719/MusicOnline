@@ -12,7 +12,7 @@
 
 		<div class="page-header">
 		<div class="container" style="width: 500px">
-			<form method="POST" action="/register">
+			<form method="POST" action="/regis">
   				<div class="form-group">
     				<label >帐号</label>
    					<input id="uname" class="form-control" placeholder="Enter Account" name="uname" style="width: 250px">
@@ -23,7 +23,7 @@
   				</div>
 				<div class="form-group">
     				<label >昵称</label>
-   					<input id="uname" class="form-control" placeholder="Enter NickName" name="nname" style="width: 250px">
+   					<input id="nname" class="form-control" placeholder="Enter NickName" name="nname" style="width: 250px">
   				</div>
 				<br/>
 				<button type="submit" class="btn btn-default" onclick="return checkInput();">Register</button>
@@ -46,11 +46,17 @@
 						return false
 					}
 
+					var nickname = document.getElementById("nname");
+					if(nickname.value.length == 0){
+						alert("please input nickname");
+						return false
+					}
+
 					return true
 				}
 
 				function backHome(){
-					window.location.href = "/";
+					window.location.href = "/login";
 					return false;
 				}
 			</script>
