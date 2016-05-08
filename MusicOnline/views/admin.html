@@ -16,10 +16,10 @@
 				<a class="navbar-brand" href="/"> MusicOnline </a>
 				<div>
 					<ul class="nav navbar-nav">
-						<li {{if .IsHome}}class="active"{{end}}><a href="/">首页</a></li>
-						<li {{if .IsNews}}class="active"{{end}}><a href="/news">资讯</a></li>
-						<li {{if .IsStage}}class="active"{{end}}><a href="/stage">音乐Stage</a></li>
-						<li {{if .IsMessage}}class="active"{{end}}><a href="/message">留言板</a></li>
+						<li {{if .IsHome}}class="active"{{end}}><a href="/admin">首页</a></li>
+						<li {{if .IsNews}}class="active"{{end}}><a href="/adminnews">资讯</a></li>
+						<li {{if .IsStage}}class="active"{{end}}><a href="/adminstage">音乐Stage</a></li>
+						<li {{if .IsMessage}}class="active"{{end}}><a href="/adminmessage">留言板</a></li>
 					</ul>
 				</div>
 
@@ -46,6 +46,16 @@
 
 		<div class="container" style="height: 300px">
 			<h3>音乐资讯</h3>
+
+			{{range .News}}
+				<div class="page-header">
+					<h2><a href="/adminnews/view/{{.Id}}">{{.Title}}</a></h2>
+					<h6 class="text-muted">文章发表于 {{.Time}}，共有{{.Views}}次浏览</h6>
+					<p>
+						{{.Content}}
+					</p>
+				</div>
+				{{end}}
 		</div>
 
 		<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>

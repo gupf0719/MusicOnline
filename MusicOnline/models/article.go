@@ -8,9 +8,10 @@ import (
 
 type Article struct {
 	Id      int64     `orm:"auto"`
-	Name    string    `orm:"size(128)"`
+	Title   string    `orm:"size(128)"`
 	Content string    `orm:"size(128)"`
 	Time    time.Time `orm:"type(datetime)"`
+	Views   int64     `orm:"index"`
 }
 
 func init() {
@@ -31,19 +32,19 @@ func ModifyArticle(m *Article) error {
 
 	article := new(Article)
 
-	qs :=o.QueryTable("article")
-	err :=qs.Filter("id",m.Id).One(article)
+	qs := o.QueryTable("article")
+	err := qs.Filter("id", m.Id).One(article)
 	if err != nil {
-			return err
+		return err
 	}
 
-	article.Name=m.Name
-	article.Content=m.Content
-	article.Time=m.Time
+	article.Title = m.Title
+	article.Content = m.Content
+	article.Time = m.Time
 
 	_, err = o.Update(article)
 	if err != nil {
-			return err
+		return err
 	}
 	return nil
 }
@@ -57,5 +58,3 @@ func DelArticle(id int64) error {
 	}
 	return nil
 }
-
-

@@ -16,5 +16,10 @@ func init() {
 	beego.Router("/stage", &controllers.StageController{})
 	beego.Router("/regis", &controllers.RegisterController{})
 	beego.Router("/admin", &controllers.AdminController{})
+	beego.Router("/adminnews", &controllers.AdminnewsController{})
+	beego.Router("/adminstage", &controllers.AdminstageController{})
+	beego.Router("/adminmessage", &controllers.AdminmessageController{})
+	beego.AutoRouter(&controllers.AdminnewsController{})
+	beego.AutoRouter(&controllers.AdminstageController{})
 }
 

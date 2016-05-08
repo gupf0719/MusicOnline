@@ -12,3 +12,8 @@ func (this *MessageController) Get() {
 	this.Data["IsMessage"] = true
 	this.TplName = "message.html"
 }
+
+//func (this *MessageController) Post() {
+
+//}
+

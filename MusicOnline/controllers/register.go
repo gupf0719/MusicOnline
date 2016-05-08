@@ -17,7 +17,7 @@ func (this *RegisterController) Get() {
 
 func (this *RegisterController) Post() {
 
-	this.TplName = "register.html"
+//	this.TplName = "register.html"
 
 	name := this.Input().Get("uname")
 	password := this.Input().Get("pwd")
@@ -26,4 +26,6 @@ func (this *RegisterController) Post() {
 	user := models.User{Name: name, Password: password, NickName: nickname}
 
 	models.AddUser(&user)
+
+	this.Redirect("/login",301)
 }

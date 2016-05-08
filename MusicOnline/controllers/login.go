@@ -42,12 +42,14 @@ func checkAccount(ctx *context.Context) bool {
 		return false
 	}
 	uname := ck.Value
+	beego.Debug(uname)
 
 	ck, err = ctx.Request.Cookie("pwd")
 	if err != nil {
 		return false
 	}
 	pwd := ck.Value
+	beego.Debug(pwd)
 
 	return models.IsExist(uname, pwd)
 }
