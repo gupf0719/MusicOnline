@@ -1,6 +1,7 @@
 package models
 
 import (
+	"strconv"
 	"time"
 
 	"github.com/astaxie/beego/orm"
@@ -32,12 +33,26 @@ func AddMusicMessage(nickname string, content string) error {
 	return err
 }
 
-func DelMusicMessage(mid int64) error {
+func DelMusicMessage(mid string) error {
+	midNum, err := strconv.ParseInt(mid, 10, 64)
+	if err != nil {
+		return err
+	}
+
 	o := orm.NewOrm()
 
-	_, err := o.Delete(&Message{Id: mid})
+	_, err = o.Delete(&Message{Id: midNum})
 	if err != nil {
 		return err
 	}
 	return nil
+}
+
+func GetAllMusicMessages() (messages []*Message, err error) {
+	messages = make([]*Message, 0)
+
+	o := orm.NewOrm()
+	qs := o.QueryTable("message")
+	_, err = qs.All(&messages)
+	return messages, err
 }

@@ -13,6 +13,15 @@ type MessageController struct {
 func (this *MessageController) Get() {
 	this.Data["IsMessage"] = true
 	this.TplName = "message.html"
+
+	messages, err := models.GetAllMusicMessages()
+	if err != nil {
+		beego.Error(err)
+		return
+	}
+
+	this.Data["Messages"] = messages
+	this.Data["IsLogin"] = checkAccount(this.Ctx)
 }
 
 //func (this *MessageController) Post() {

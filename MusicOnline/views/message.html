@@ -12,8 +12,7 @@
 
 		<div class="container" >
 			{{range .Messages}}
-			<h3>{{.NickName}} </h3>
-			<br/>
+			<h3>{{.Nickname}}  <small>{{.Time}}</small> </h3>
 			{{.Content}}
 			{{end}}
 			<br/><br/><br/>
