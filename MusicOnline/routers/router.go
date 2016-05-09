@@ -21,5 +21,9 @@ func init() {
 	beego.Router("/adminmessage", &controllers.AdminmessageController{})
 	beego.AutoRouter(&controllers.AdminnewsController{})
 	beego.AutoRouter(&controllers.AdminstageController{})
+	beego.AutoRouter(&controllers.AdminmessageController{})
+	beego.AutoRouter(&controllers.NewsController{})
+	beego.AutoRouter(&controllers.StageController{})
+	beego.AutoRouter(&controllers.MessageController{})
 }
 

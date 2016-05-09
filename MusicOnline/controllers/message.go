@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"MusicOnline/MusicOnline/models"
+
 	"github.com/astaxie/beego"
 )
 
@@ -17,3 +19,11 @@ func (this *MessageController) Get() {
 
 //}
 
+func (this *MessageController) Add() {
+	err := models.AddMusicMessage(this.Input().Get("nickname"), this.Input().Get("content"))
+	if err != nil {
+		beego.Error(err)
+	}
+
+	this.Redirect("/message", 302)
+}

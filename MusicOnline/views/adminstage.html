@@ -1,6 +1,6 @@
 {{template "header"}}
 
-		<title>Add Topic</title>
+		<title>MusicOnline Stage</title>
 	</head>
 
 	<body>
@@ -29,20 +29,28 @@
 		</div>
 
 		<div class="container" >
-			<h1>添加文章</h1>
-			<form method="post" action="/topic">
-				<div class="form-group">
-					<label>文章标题：</label>
-					<input type="text" name="title" class="form-control">
-				</div>
-
-				<div class="form-group">
-					<label>文章内容：</label>
-					<textarea name="content" cols="30" rows="10"  class="form-control" style="height: 500px"></textarea>
-				</div>
-
-				<button type="submit" class="btn btn-default">添加文章</button>
-			</form>
+			<h1>文章列表</h1>
+			<a href="/adminstage/add" class="btn btn-default">添加文章</a>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>文章名称</th>
+						<th>最后更新</th>
+						<th>浏览</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				{{range .News}}
+				<tbody>
+					<th>{{.Id}}</th>
+					<th><a href="/adminstage/view/{{.Id}}">{{.Title}}</a></th>
+					<th>{{.Time}}</th>
+					<th>{{.Views}}</th>
+					<th><a href="/adminstage/modify?tid={{.Id}}">修改</a> <a href="/adminstage/delete?tid={{.Id}}">删除</a></th>
+				</tbody>
+				{{end}}
+			</table>
 		</div>
 
 

@@ -10,7 +10,7 @@ import (
 type News struct {
 	Id       int64     `orm:"auto"`
 	Title    string    `orm:"size(128)"`
-	Content  string    `orm:"size(128)"`
+	Content  string    `orm:"size(1024)"`
 	Category string    `orm:"size(128)"`
 	Time     time.Time `orm:"type(datetime)"`
 	Views    int64     `orm:"index"`
@@ -110,7 +110,24 @@ func GetNews2(tid string) (*News, error) {
 	return news, err
 }
 
-func GetAllNews(isDesc bool) ([]*News, error) {
+//func GetAllNews(isDesc bool) ([]*News, error) {
+//	o := orm.NewOrm()
+
+//	news := make([]*News, 0)
+
+//	qs := o.QueryTable("news")
+
+//	var err error
+//	if isDesc {
+//		_, err = qs.OrderBy("-time").All(&news)
+//	} else {
+//		_, err = qs.All(&news)
+//	}
+
+//	return news, err
+//}
+
+func GetAllNews(cate string,isDesc bool) ([]*News, error) {
 	o := orm.NewOrm()
 
 	news := make([]*News, 0)
@@ -121,6 +138,9 @@ func GetAllNews(isDesc bool) ([]*News, error) {
 	if isDesc {
 		_, err = qs.OrderBy("-time").All(&news)
 	} else {
+		if len(cate) > 0 {
+			qs = qs.Filter("category", cate)
+		}
 		_, err = qs.All(&news)
 	}
 

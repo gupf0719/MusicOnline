@@ -10,6 +10,29 @@
 			</div>
 		</div>
 
+		<div class="container" >
+			<h1>文章列表</h1>
+
+			<br/><br/><br/>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>文章名称</th>
+						<th>最后更新</th>
+						<th>浏览</th>
+					</tr>
+				</thead>
+				{{range .News}}
+				<tbody>
+					<th>{{.Id}}</th>
+					<th><a href="/stage/view/{{.Id}}">{{.Title}}</a></th>
+					<th>{{.Time}}</th>
+					<th>{{.Views}}</th>
+				</tbody>
+				{{end}}
+			</table>
+		</div>
 
 
 		<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>

@@ -42,6 +42,16 @@
 
 		<div class="container" style="height: 300px">
 			<h3>音乐Satge</h3>
+
+			{{range .Stage}}
+				<div class="page-header">
+					<h4><a href="/adminstage/view/{{.Id}}">{{.Title}}</a></h4>
+					<h6 class="text-muted">文章发表于 {{.Time}}，共有{{.Views}}次浏览</h6>
+					<p>
+						{{.Content}}
+					</p>
+				</div>
+				{{end}}
 		</div>
 
 		<div class="container" style="height: 300px">
@@ -49,7 +59,7 @@
 
 			{{range .News}}
 				<div class="page-header">
-					<h2><a href="/adminnews/view/{{.Id}}">{{.Title}}</a></h2>
+					<h4><a href="/adminnews/view/{{.Id}}">{{.Title}}</a></h4>
 					<h6 class="text-muted">文章发表于 {{.Time}}，共有{{.Views}}次浏览</h6>
 					<p>
 						{{.Content}}

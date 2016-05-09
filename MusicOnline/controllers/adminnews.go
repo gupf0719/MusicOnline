@@ -15,19 +15,26 @@ func (this *AdminnewsController) Get() {
 	this.TplName = "adminnews.html"
 	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
-	news, err := models.GetAllNews(false)
+	news, err := models.GetAllNews(this.Input().Get("cate"), false)
 	if err != nil {
 		beego.Error(err)
 	} else {
 		this.Data["News"] = news
 	}
+
+	categories, err := models.GetAllCategories()
+	if err != nil {
+		beego.Error(err)
+	} else {
+		this.Data["Categories"] = categories
+	}
 }
 
 func (this *AdminnewsController) Post() {
-//	if !checkAccount(this.Ctx) {
-//		this.Redirect("/login", 302)
-//		return
-//	}
+	//	if !checkAccount(this.Ctx) {
+	//		this.Redirect("/login", 302)
+	//		return
+	//	}
 	tid := this.Input().Get("tid")
 	title := this.Input().Get("title")
 	content := this.Input().Get("content")
@@ -81,10 +88,10 @@ func (this *AdminnewsController) Modify() {
 }
 
 func (this *AdminnewsController) Delete() {
-//	if !checkAccount(this.Ctx) {
-//		this.Redirect("/login", 302)
-//		return
-//	}
+	//	if !checkAccount(this.Ctx) {
+	//		this.Redirect("/login", 302)
+	//		return
+	//	}
 
 	err := models.DeleteNews(this.Input().Get("tid"))
 	if err != nil {

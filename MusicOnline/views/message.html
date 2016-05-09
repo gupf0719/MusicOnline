@@ -10,6 +10,29 @@
 			</div>
 		</div>
 
+		<div class="container" >
+			{{range .Messages}}
+			<h3>{{.NickName}} </h3>
+			<br/>
+			{{.Content}}
+			{{end}}
+			<br/><br/><br/>
+			<h3>留言</h3>
+			<form method="post" action="/message/add">
+				<input type="hidden" name="tid" value="{{.Topic.Id}}">
+				<div class="form-group">
+					<label>昵称：</label>
+					<input type="text" class="form-control" name="nickname">
+				</div>
+
+				<div class="form-group">
+					<label>内容：</label>
+					<textarea name="content" class="form-control" id="" cols="30" rows="10"></textarea>
+				</div>
+
+				<button class="btn btn-default">提交</button>
+			</form>
+		</div>
 
 
 		<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
