@@ -1,0 +1,45 @@
+{{template "header"}}
+
+		<title>MusicOnline Stage</title>
+	</head>
+
+	<body>
+		<div class="navbar navbar-default navbar-inverse  navbar-fixed-top">
+			<div class="container">
+				{{template "navbar" .}}
+			</div>
+		</div>
+
+		<div class="container" >
+			<h1>音乐列表</h1>
+			<br/><br/><br/>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>音乐名称</th>
+						<th>歌手</th>
+						<th>专辑</th>
+						<th>分类</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				{{range .Music}}
+				<tbody>
+					<th>{{.Id}}</th>
+					<th>{{.Name}}</th>
+					<th>{{.Singer}}</th>
+					<th>{{.Special}}</th>
+					<th>{{.Category}}</th>
+					<th><a href="/music?tid={{.Id}}">播放</a>
+				</tbody>
+				{{end}}
+			</table>
+		</div>
+
+
+
+		<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+		<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+	</body>
+</html>

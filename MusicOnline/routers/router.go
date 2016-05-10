@@ -12,7 +12,7 @@ func init() {
 	beego.Router("/login", &controllers.LoginController{})
 	beego.Router("/message", &controllers.MessageController{})
 	beego.Router("/news", &controllers.NewsController{})
-	beego.Router("/search", &controllers.SearchController{})
+	beego.Router("/music", &controllers.MusicController{})
 	beego.Router("/stage", &controllers.StageController{})
 	beego.Router("/regis", &controllers.RegisterController{})
 	beego.Router("/admin", &controllers.AdminController{})

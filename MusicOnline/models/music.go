@@ -87,7 +87,6 @@ func DeleteMusic(tid string) error {
 	return nil
 }
 
-
 func GetAllMusic(isDesc bool) ([]*Music, error) {
 	o := orm.NewOrm()
 
@@ -100,6 +99,20 @@ func GetAllMusic(isDesc bool) ([]*Music, error) {
 		_, err = qs.OrderBy("-time").All(&music)
 	} else {
 		_, err = qs.All(&music)
+	}
+
+	return music, err
+}
+
+func SearchMusic(name string) ([]*Music, error) {
+	o := orm.NewOrm()
+
+	music := make([]*Music, 0)
+
+	qs := o.QueryTable("music")
+	_, err := qs.Filter("name", name).All(&music)
+	if err != nil {
+		return nil, err
 	}
 
 	return music, err
