@@ -49,7 +49,6 @@ func ModifyNews(tid string, title string, content string, category string) error
 		news.Content = content
 		news.Category = category
 		news.Time = time.Now()
-		news.Views--
 		o.Update(news)
 		return nil
 	}

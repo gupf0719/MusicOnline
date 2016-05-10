@@ -15,11 +15,11 @@ func (this *AdminstageController) Get() {
 	this.TplName = "adminstage.html"
 	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
-	news, err := models.GetAllStage(false)
+	stage, err := models.GetAllStage(false)
 	if err != nil {
 		beego.Error(err)
 	} else {
-		this.Data["News"] = news
+		this.Data["Stage"] = stage
 	}
 }
 

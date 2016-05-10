@@ -1,61 +1,106 @@
 package models
 
 import (
+	"strconv"
+
 	"github.com/astaxie/beego/orm"
 )
 
 type Music struct {
-	Id        int64  `orm:"auto"`
-	Name      string `orm:"size(128)"`
-	Singer    string `orm:"size(128)"`
-	Special   string `orm:"size(128)"`
-	Category  string `orm:"size(128)"`
-	Image     string `orm:"size(128)"`
+	Id       int64  `orm:"auto"`
+	Name     string `orm:"size(128)"`
+	Singer   string `orm:"size(128)"`
+	Special  string `orm:"size(128)"`
+	Category string `orm:"size(128)"`
+	Image    string `orm:"size(128)"`
 }
 
 func init() {
 	orm.RegisterModel(new(Music))
 }
 
-func AddMusic(m *Music) error {
+func AddMusic(name string, singer string, special string, category string) error {
 	o := orm.NewOrm()
-	_, err := o.Insert(m)
+
+	music := &Music{
+		Name:     name,
+		Singer:   singer,
+		Special:  special,
+		Category: category,
+	}
+	_, err := o.Insert(music)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func ModifyMusic(m *Music) error {
-	o := orm.NewOrm()
+func GetMusic(tid string) (*Music, error) {
+	tidNum, err := strconv.ParseInt(tid, 10, 64)
+	if err != nil {
+		return nil, err
+	}
 
+	o := orm.NewOrm()
 	music := new(Music)
 
 	qs := o.QueryTable("music")
-	err := qs.Filter("id", m.Id).One(music)
+	err = qs.Filter("id", tidNum).One(music)
+	if err != nil {
+		return nil, err
+	}
+
+	return music, err
+}
+
+func ModifyMusic(tid string, name string, singer string, special string, category string) error {
+	tidNum, err := strconv.ParseInt(tid, 10, 64)
 	if err != nil {
 		return err
 	}
 
-	music.Name = m.Name
-	music.Singer = m.Singer
-	music.Special = m.Special
-	music.Category = m.Category
-	music.Image = m.Image
+	o := orm.NewOrm()
+	music := &Music{Id: tidNum}
+	if o.Read(music) == nil {
+		music.Name = name
+		music.Singer = singer
+		music.Special = special
+		music.Category = category
+		o.Update(music)
+		return nil
+	}
+	return nil
+}
 
-	_, err = o.Update(music)
+func DeleteMusic(tid string) error {
+	tidNum, err := strconv.ParseInt(tid, 10, 64)
+	if err != nil {
+		return err
+	}
+
+	o := orm.NewOrm()
+
+	_, err = o.Delete(&Music{Id: tidNum})
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func DelMusic(id int64) error {
+
+func GetAllMusic(isDesc bool) ([]*Music, error) {
 	o := orm.NewOrm()
 
-	_, err := o.Delete(&Music{Id: id})
-	if err != nil {
-		return err
+	music := make([]*Music, 0)
+
+	qs := o.QueryTable("music")
+
+	var err error
+	if isDesc {
+		_, err = qs.OrderBy("-time").All(&music)
+	} else {
+		_, err = qs.All(&music)
 	}
-	return nil
+
+	return music, err
 }

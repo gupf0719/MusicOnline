@@ -5,9 +5,10 @@ import (
 )
 
 type Mv struct {
-	Id    int64  `orm:"auto"`
-	Name  string `orm:"size(128)"`
-	Image string `orm:"size(128)"`
+	Id           int64  `orm:"auto"`
+	Name         string `orm:"size(128)"`
+	Introduction string `orm:"size(128)"`
+	Image        string `orm:"size(128)"`
 }
 
 func init() {
@@ -28,18 +29,18 @@ func ModifyMv(m *Singer) error {
 
 	mv := new(Singer)
 
-	qs :=o.QueryTable("mv")
-	err :=qs.Filter("id",m.Id).One(mv)
+	qs := o.QueryTable("mv")
+	err := qs.Filter("id", m.Id).One(mv)
 	if err != nil {
-			return err
+		return err
 	}
 
-	mv.Name=m.Name
-	mv.Image=m.Image
+	mv.Name = m.Name
+	mv.Image = m.Image
 
 	_, err = o.Update(mv)
 	if err != nil {
-			return err
+		return err
 	}
 	return nil
 }

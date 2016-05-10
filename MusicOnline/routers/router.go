@@ -19,11 +19,15 @@ func init() {
 	beego.Router("/adminnews", &controllers.AdminnewsController{})
 	beego.Router("/adminstage", &controllers.AdminstageController{})
 	beego.Router("/adminmessage", &controllers.AdminmessageController{})
+	beego.Router("/adminmusic", &controllers.AdminmusicController{})
+	beego.Router("/adminmv", &controllers.AdminmvController{})
 	beego.AutoRouter(&controllers.AdminnewsController{})
 	beego.AutoRouter(&controllers.AdminstageController{})
 	beego.AutoRouter(&controllers.AdminmessageController{})
 	beego.AutoRouter(&controllers.NewsController{})
 	beego.AutoRouter(&controllers.StageController{})
 	beego.AutoRouter(&controllers.MessageController{})
+	beego.AutoRouter(&controllers.AdminmusicController{})
+	beego.AutoRouter(&controllers.AdminmvController{})
 }
 
