@@ -160,17 +160,18 @@
 				continous = true,
 				autoplay = true,
 
+				playlist = [
 				{{range .Music}}
-					playlist = [
 					{
-						title: {{.Name}},
-						artist: {{.Singer}},
-						album: {{.Special}},
+						title: '歌名：'+{{.Name}},
+						artist: '歌手：'+{{.Singer}},
+						album: '专辑：'+{{.Special}},
 						cover: '/static/img/3.jpg',
 						mp3: '/static/music/'+{{.Name}}+'.mp3',
 						ogg: ''
-					},];
+					},
 				{{end}}
+				];
 
 
 
