@@ -40,7 +40,7 @@
 
 		<div class="container" >
 			<h1>{{.Stage.Title}} <small><a href="/adminstage/modify?tid={{.Tid}}" class="btn btn-default">修改文章</a></small></h1>
-			{{.Stage.Content}}
+			{{str2html .Stage.Content}}
 		</div>
 
 

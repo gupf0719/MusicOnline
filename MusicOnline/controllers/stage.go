@@ -4,6 +4,7 @@ import (
 	"MusicOnline/MusicOnline/models"
 
 	"github.com/astaxie/beego"
+	"log"
 )
 
 type StageController struct {
@@ -54,7 +55,6 @@ func (this *StageController) View() {
 		this.Redirect("/admin", 302)
 		return
 	}
-
 	this.Data["Stage"] = stage
 	this.Data["Tid"] = this.Ctx.Input.Param("0")
 }

@@ -60,6 +60,11 @@ func (this *AdminstageController) View() {
 		return
 	}
 
+	// 解析 markdown 格式为 html
+	contentMark := []byte(stage.Content)
+	htmlBytes := ParseDoc(contentMark)
+	stage.Content = string(htmlBytes)
+
 	this.Data["Stage"] = stage
 	this.Data["Tid"] = this.Ctx.Input.Param("0")
 }
