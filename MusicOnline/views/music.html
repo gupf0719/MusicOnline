@@ -1,6 +1,62 @@
 {{template "header"}}
 
 		<title>MusicOnline Stage</title>
+
+		<script src="/static/js/jquery-1.12.3.js" type="text/javascript"></script>
+			<script type="text/javascript">
+
+			var root = "/static/music/";
+			var path = [];
+
+			$(document).ready(
+				function (){
+					load(path);
+					$('#player').bind('ended', next);
+				}
+			);
+
+			function load(path)  {
+				var url = root+path.join('/');
+				$.ajax({
+						url: url,
+						dataType: "json",
+						success: function(data) {
+							listFile(data)
+						}
+					});
+			}
+
+			function listFile(files) {
+				var $b = $('#playlist').empty();
+				function addToList(i, f) {
+					if (f.Name[0] == '.' || f.Name[0] == ':') return;
+			    	var dir = f.IsDir;
+					if(dir) return;
+					f.Path = path.join('/');
+					$('<a></a>').text(f.Name).data('file', f)
+						.addClass("file")
+						.appendTo($b)
+						.click(clickFile);
+				}
+				$.each(files, addToList);
+			}
+
+			function clickFile(e) {
+				var f = $(e.target).data('file');
+				var name = f.Name;
+				var path = f.Path;
+				var url = root+path+'/'+name;
+				$(e.target).addClass('playing')
+				$('#player').attr('src', url);
+			}
+
+
+			function next() {
+				var $next = $('#playlist a.playing').next();
+				if ($next.length) $next.click();
+			}
+
+		</script>
 	</head>
 
 	<body>
@@ -12,6 +68,18 @@
 
 		<div class="container" >
 			<h1>音乐列表</h1>
+			<br/>
+			<div id="playlist" style="border-radius: 10px;
+
+						width: 300px;
+
+						height: 36px;
+						overflow: auto;
+						background: #3CB371;">
+					</div>
+			<audio id="player" controls autoplay autobuffer >
+				<p>What? Your browser doesn't support</p>
+			</audio>
 			<br/><br/><br/>
 			<table class="table table-striped">
 				<thead>
