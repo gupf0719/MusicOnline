@@ -109,22 +109,26 @@ func GetNews2(tid string) (*News, error) {
 	return news, err
 }
 
-//func GetAllNews(isDesc bool) ([]*News, error) {
-//	o := orm.NewOrm()
+func GetAllNews2(cate string,isDesc bool) ([]*News, error) {
+	o := orm.NewOrm()
 
-//	news := make([]*News, 0)
+	news := make([]*News, 0)
 
-//	qs := o.QueryTable("news")
+	qs := o.QueryTable("news")
 
-//	var err error
-//	if isDesc {
-//		_, err = qs.OrderBy("-time").All(&news)
-//	} else {
-//		_, err = qs.All(&news)
-//	}
+	var err error
+	if isDesc {
+		_, err = qs.OrderBy("-time").Limit(3).All(&news)
+	} else {
+		if len(cate) > 0 {
+			qs = qs.Filter("category", cate)
+		}
+		_, err = qs.All(&news)
+	}
 
-//	return news, err
-//}
+	return news, err
+}
+
 
 func GetAllNews(cate string,isDesc bool) ([]*News, error) {
 	o := orm.NewOrm()

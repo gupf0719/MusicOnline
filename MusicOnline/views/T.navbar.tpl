@@ -1,4 +1,5 @@
 {{define "navbar"}}
+
 <a class="navbar-brand" href="/"> MusicOnline </a>
 	<div>
 		<ul class="nav navbar-nav">
@@ -7,15 +8,17 @@
 			<li {{if .IsStage}}class="active"{{end}}><a href="/stage">音乐Stage</a></li>
 			<li {{if .IsMessage}}class="active"{{end}}><a href="/message">留言板</a></li>
 		</ul>
+
 	</div>
 
 	<div class="pull-right">
-		<ul class="nav navbar-nav">
-			{{if .IsLogin}}
-				<li><a href="/login?exit=true">logout</a></li>
-			{{else}}
-				<li><a href="/login">login</a></li>
-			{{end}}
-		</ul>
-	</div>
+
+		<form class="navbar-form navbar-left" role="search" method="post" action="/music">
+       		<div class="form-group">
+          		<input type="text" class="form-control" placeholder="输入歌名" name="musicname" >
+        	</div>
+        	<button type="submit" class="btn btn-default">Search</button>
+    </form>
+
+</div>
 {{end}}

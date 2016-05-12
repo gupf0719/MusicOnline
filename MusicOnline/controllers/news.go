@@ -58,6 +58,7 @@ func (this *NewsController) View() {
 	this.TplName = "viewnews.html"
 
 	news, err := models.GetNews(this.Ctx.Input.Param("0"))
+
 	if err != nil {
 		beego.Error(err)
 		this.Redirect("/", 302)

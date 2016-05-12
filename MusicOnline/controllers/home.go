@@ -15,14 +15,14 @@ func (this *HomeController) Get() {
 	this.TplName = "home.html"
 	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
-	news, err := models.GetAllNews("", true)
+	news, err := models.GetAllNews2("", true)
 	if err != nil {
 		beego.Error(err)
 	} else {
 		this.Data["News"] = news
 	}
 
-	stage, err := models.GetAllStage(true)
+	stage, err := models.GetAllStage2(true)
 	if err != nil {
 		beego.Error(err)
 	} else {

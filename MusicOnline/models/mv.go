@@ -15,6 +15,20 @@ func init() {
 	orm.RegisterModel(new(Mv))
 }
 
+func GetMv(name string)(*Mv, error){
+
+	o := orm.NewOrm()
+	mv := new(Mv)
+
+	qs := o.QueryTable("mv")
+	err := qs.Filter("name", name).One(mv)
+	if err != nil {
+		return nil, err
+	}
+
+	return mv, err
+}
+
 func AddMv(m *Mv) error {
 	o := orm.NewOrm()
 	_, err := o.Insert(m)

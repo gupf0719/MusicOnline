@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<link rel="shortcut icon" href="/static/img/favicon.jpg">
-		<link http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+{{template "header"}}
 
 		<title>Home - MusicOnline</title>
 	</head>
@@ -14,41 +7,17 @@
 		<div class="navbar navbar-default navbar-inverse navbar-fixed-top" >
 			<div class="container">
 
-				<a class="navbar-brand" href="/"> MusicOnline </a>
-				<div>
-					<ul class="nav navbar-nav">
-						<li {{if .IsHome}}class="active"{{end}}><a href="/">首页</a></li>
-						<li {{if .IsNews}}class="active"{{end}}><a href="/news">资讯</a></li>
-						<li {{if .IsStage}}class="active"{{end}}><a href="/stage">音乐Stage</a></li>
-						<li {{if .IsMessage}}class="active"{{end}}><a href="/message">留言板</a></li>
-					</ul>
+				{{template "navbar" .}}
 
-				</div>
-
-				<div class="pull-right">
-
-					<form class="navbar-form navbar-left" role="search" method="post" action="/music">
-       					<div class="form-group">
-          					<input type="text" class="form-control" placeholder="Search" name="musicname">
-        				</div>
-        				<button type="submit" class="btn btn-default">Search</button>
-     				 </form>
-
-					<ul class="nav navbar-nav">
-					{{if .IsLogin}}
-					<li><a href="/login?exit=true">logout</a></li>
-					{{else}}
-					<li><a href="/login">login</a></li>
-					{{end}}
-					</ul>
-
-				</div>
 			</div>
 		</div>
 
 
-		<div class="container" style="height: 300px">
+		<div class="container" style="height: 400px">
 			<h3>MV首播</h3>
+			<br/>
+			<a href="/mv?name=天涯" ><img src="/static/img/天涯.jpg" class="center-block" height="280px" width="660px" ></a>
+
 		</div>
 
 		<div class="container" style="height: 300px">

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="/static/img/favicon.jpg">
+		<link http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+		<title>Home - MusicOnline</title>
+
+  	<!-- Load the source files -->
+   	<link href="http://vjs.zencdn.net/5.9.2/video-js.css" rel="stylesheet" type="text/css">
+ 		<script src="http://vjs.zencdn.net/5.9.2/video.js"></script>
+
+	<!-- Set the location of the flash SWF -->
+	<script>
+		videojs.options.flash.swf = '../build/temp/video-js.swf';
+	</script>
+
+</head>
+<body>
+
+	<div class="navbar navbar-default navbar-inverse navbar-fixed-top" >
+			<div class="container">
+
+				<a class="navbar-brand" href="/"> MusicOnline </a>
+				<div>
+					<ul class="nav navbar-nav">
+						<li {{if .IsHome}}class="active"{{end}}><a href="/">首页</a></li>
+						<li {{if .IsNews}}class="active"{{end}}><a href="/news">资讯</a></li>
+						<li {{if .IsStage}}class="active"{{end}}><a href="/stage">音乐Stage</a></li>
+						<li {{if .IsMessage}}class="active"{{end}}><a href="/message">留言板</a></li>
+					</ul>
+
+				</div>
+
+				<div class="pull-right">
+
+					<form class="navbar-form navbar-left" role="search" method="post" action="/music">
+       					<div class="form-group">
+          					<input type="text" class="form-control" placeholder="输入歌名" name="musicname" >
+        				</div>
+        				<button type="submit" class="btn btn-default">Search</button>
+     				 </form>
+
+					<ul class="nav navbar-nav">
+					{{if .IsLogin}}
+					<li><a href="/login?exit=true">logout</a></li>
+					{{else}}
+					<li><a href="/login">login</a></li>
+					{{end}}
+					</ul>
+
+				</div>
+			</div>
+	</div>
+
+	<h1>{{.Mv.Name}}</h1>
+	<br/>
+	<h1><small>{{.Mv.Introduction}}<small></h1>
+	<br/><br/>
+
+  	<video id="vid1" class="video-js vjs-default-skin" controls preload="auto" width="1440" height="664"
+		style="  padding: 20px;"
+
+    	data-setup='{}'
+		type="video/mp4">
+
+		<!--src="/static/video/天涯.mp4" type="video/mp4"-->
+
+  	</video>
+
+  	<script>
+    	var vid = document.getElementById("vid1");
+		vid.src="/static/video/"+{{.Mv.Name}}+".mp4"
+		vid.poster="/static/img/"+{{.Mv.Name}}+".jpg"
+  	</script>
+
+</body>
+</html>
+
+

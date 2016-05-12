@@ -123,3 +123,21 @@ func GetAllStage(isDesc bool) ([]*Stage, error) {
 
 	return stage, err
 }
+
+
+func GetAllStage2(isDesc bool) ([]*Stage, error) {
+	o := orm.NewOrm()
+
+	stage := make([]*Stage, 0)
+
+	qs := o.QueryTable("stage")
+
+	var err error
+	if isDesc {
+		_, err = qs.OrderBy("-time").Limit(3).All(&stage)
+	} else {
+		_, err = qs.All(&stage)
+	}
+
+	return stage, err
+}
