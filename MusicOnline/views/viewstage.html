@@ -21,19 +21,10 @@
 						<li {{if .IsStage}}class="active"{{end}}><a href="/adminstage">音乐Stage</a></li>
 						<li {{if .IsMessage}}class="active"{{end}}><a href="/adminmessage">留言板</a></li>
 						<li {{if .IsMusic}}class="active"{{end}}><a href="/adminmusic">音乐</a></li>
-						<li {{if .IsMv}}class="active"{{end}}><a href="/adminmv">mv</a></li>
+
 					</ul>
 				</div>
 
-				<div class="pull-right">
-					<ul class="nav navbar-nav">
-					{{if .IsLogin}}
-					<li><a href="/login?exit=true">logout</a></li>
-					{{else}}
-					<li><a href="/login">login</a></li>
-					{{end}}
-					</ul>
-				</div>
 			</div>
 		</div>
 

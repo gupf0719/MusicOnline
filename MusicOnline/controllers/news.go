@@ -55,7 +55,7 @@ func (this *NewsController) Post() {
 }
 
 func (this *NewsController) View() {
-	this.TplName = "viewnews.html"
+	this.TplName = "shownews.html"
 
 	news, err := models.GetNews(this.Ctx.Input.Param("0"))
 

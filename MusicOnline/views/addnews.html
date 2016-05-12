@@ -6,7 +6,7 @@
 	<body>
 		<div class="navbar navbar-default navbar-inverse  navbar-fixed-top">
 			<div class="container">
-				<a class="navbar-brand" href="/admin"> MusicOnline </a>
+				<a class="navbar-brand" href="/"> MusicOnline </a>
 				<div>
 					<ul class="nav navbar-nav">
 						<li {{if .IsHome}}class="active"{{end}}><a href="/admin">首页</a></li>
@@ -14,17 +14,7 @@
 						<li {{if .IsStage}}class="active"{{end}}><a href="/adminstage">音乐Stage</a></li>
 						<li {{if .IsMessage}}class="active"{{end}}><a href="/adminmessage">留言板</a></li>
 						<li {{if .IsMusic}}class="active"{{end}}><a href="/adminmusic">音乐</a></li>
-						<li {{if .IsMv}}class="active"{{end}}><a href="/adminmv">mv</a></li>
-					</ul>
-				</div>
 
-				<div class="pull-right">
-					<ul class="nav navbar-nav">
-					{{if .IsLogin}}
-					<li><a href="/login?exit=true">logout</a></li>
-					{{else}}
-					<li><a href="/login">login</a></li>
-					{{end}}
 					</ul>
 				</div>
 			</div>

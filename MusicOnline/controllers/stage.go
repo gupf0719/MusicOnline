@@ -46,12 +46,12 @@ func (this *StageController) Post() {
 }
 
 func (this *StageController) View() {
-	this.TplName = "viewstage.html"
+	this.TplName = "showstage.html"
 
 	stage, err := models.GetStage(this.Ctx.Input.Param("0"))
 	if err != nil {
 		beego.Error(err)
-		this.Redirect("/admin", 302)
+		this.Redirect("/", 302)
 		return
 	}
 

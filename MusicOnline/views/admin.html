@@ -17,22 +17,14 @@
 						<li {{if .IsMusic}}class="active"{{end}}><a href="/adminmusic">音乐</a></li>
 					</ul>
 				</div>
-
-				<div class="pull-right">
-					<ul class="nav navbar-nav">
-					{{if .IsLogin}}
-					<li><a href="/login?exit=true">logout</a></li>
-					{{else}}
-					<li><a href="/login">login</a></li>
-					{{end}}
-					</ul>
-				</div>
 			</div>
 		</div>
 
 
 		<div class="container" style="height: 300px">
 			<h3>MV首播</h3>
+			<br/>
+			<a href="/mv?name=天涯" ><img src="/static/img/天涯.jpg" class="center-block" height="280px" width="660px" ></a>
 		</div>
 
 		<div class="container" style="height: 300px">
@@ -46,7 +38,7 @@
 						{{.Content}}
 					</p>
 				</div>
-				{{end}}
+			{{end}}
 		</div>
 
 		<div class="container" style="height: 300px">
