@@ -13,7 +13,6 @@ type StageController struct {
 func (this *StageController) Get() {
 	this.Data["IsStage"] = true
 	this.TplName = "stage.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
 	news, err := models.GetAllStage(false)
 	if err != nil {
@@ -24,10 +23,7 @@ func (this *StageController) Get() {
 }
 
 func (this *StageController) Post() {
-	//	if !checkAccount(this.Ctx) {
-	//		this.Redirect("/login", 302)
-	//		return
-	//	}
+
 	tid := this.Input().Get("tid")
 	title := this.Input().Get("title")
 	content := this.Input().Get("content")
@@ -56,9 +52,9 @@ func (this *StageController) View() {
 	}
 
 	// 解析 markdown 格式为 html
-  	contentMark := []byte(stage.Content)
-  	htmlBytes := ParseDoc(contentMark)
-  	stage.Content = string(htmlBytes)
+	contentMark := []byte(stage.Content)
+	htmlBytes := ParseDoc(contentMark)
+	stage.Content = string(htmlBytes)
 
 	this.Data["Stage"] = stage
 	this.Data["Tid"] = this.Ctx.Input.Param("0")

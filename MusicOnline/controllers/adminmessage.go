@@ -24,7 +24,7 @@ func (this *AdminmessageController) Get() {
 	this.Data["IsLogin"] = checkAccount(this.Ctx)
 }
 
-func (this *AdminmessageController) Delete(){
+func (this *AdminmessageController) Delete() {
 	err := models.DelMusicMessage(this.Input().Get("mid"))
 	if err != nil {
 		beego.Error(err)

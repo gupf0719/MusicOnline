@@ -13,7 +13,6 @@ type AdminnewsController struct {
 func (this *AdminnewsController) Get() {
 	this.Data["IsNews"] = true
 	this.TplName = "adminnews.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
 	news, err := models.GetAllNews(this.Input().Get("cate"), false)
 	if err != nil {
@@ -31,10 +30,7 @@ func (this *AdminnewsController) Get() {
 }
 
 func (this *AdminnewsController) Post() {
-	//	if !checkAccount(this.Ctx) {
-	//		this.Redirect("/login", 302)
-	//		return
-	//	}
+
 	tid := this.Input().Get("tid")
 	title := this.Input().Get("title")
 	content := this.Input().Get("content")
@@ -55,7 +51,7 @@ func (this *AdminnewsController) Post() {
 
 func (this *AdminnewsController) Add() {
 	this.TplName = "addnews.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
+
 }
 
 func (this *AdminnewsController) View() {
@@ -69,9 +65,9 @@ func (this *AdminnewsController) View() {
 	}
 
 	// 解析 markdown 格式为 html
-  	contentMark := []byte(news.Content)
-  	htmlBytes := ParseDoc(contentMark)
-  	news.Content = string(htmlBytes)
+	contentMark := []byte(news.Content)
+	htmlBytes := ParseDoc(contentMark)
+	news.Content = string(htmlBytes)
 
 	this.Data["News"] = news
 	this.Data["Tid"] = this.Ctx.Input.Param("0")

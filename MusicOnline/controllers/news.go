@@ -14,8 +14,6 @@ func (this *NewsController) Get() {
 	this.Data["IsNews"] = true
 	this.TplName = "news.html"
 
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
-
 	news, err := models.GetAllNews(this.Input().Get("cate"), false)
 	if err != nil {
 		beego.Error(err)
@@ -32,10 +30,7 @@ func (this *NewsController) Get() {
 }
 
 func (this *NewsController) Post() {
-	//	if !checkAccount(this.Ctx) {
-	//		this.Redirect("/login", 302)
-	//		return
-	//	}
+
 	tid := this.Input().Get("tid")
 	title := this.Input().Get("title")
 	content := this.Input().Get("content")
@@ -65,10 +60,10 @@ func (this *NewsController) View() {
 		return
 	}
 
-// 解析 markdown 格式为 html
-  	contentMark := []byte(news.Content)
-  	htmlBytes := ParseDoc(contentMark)
-  	news.Content = string(htmlBytes)
+	// 解析 markdown 格式为 html
+	contentMark := []byte(news.Content)
+	htmlBytes := ParseDoc(contentMark)
+	news.Content = string(htmlBytes)
 
 	this.Data["News"] = news
 	this.Data["Tid"] = this.Ctx.Input.Param("0")

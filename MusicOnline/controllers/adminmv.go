@@ -13,7 +13,6 @@ type AdminmvController struct {
 func (this *AdminmvController) Get() {
 	this.Data["IsMv"] = true
 	this.TplName = "adminmv.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
 	music, err := models.GetAllMusic(false)
 	if err != nil {
@@ -24,10 +23,7 @@ func (this *AdminmvController) Get() {
 }
 
 func (this *AdminmvController) Post() {
-	//	if !checkAccount(this.Ctx) {
-	//		this.Redirect("/login", 302)
-	//		return
-	//	}
+
 	tid := this.Input().Get("tid")
 	name := this.Input().Get("name")
 	singer := this.Input().Get("singer")
@@ -50,7 +46,7 @@ func (this *AdminmvController) Post() {
 
 func (this *AdminmvController) Add() {
 	this.TplName = "addmusic.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
+
 }
 
 func (this *AdminmvController) Modify() {

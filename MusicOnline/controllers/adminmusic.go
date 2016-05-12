@@ -13,7 +13,6 @@ type AdminmusicController struct {
 func (this *AdminmusicController) Get() {
 	this.Data["IsMusic"] = true
 	this.TplName = "adminmusic.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
 	music, err := models.GetAllMusic(false)
 	if err != nil {
@@ -24,10 +23,7 @@ func (this *AdminmusicController) Get() {
 }
 
 func (this *AdminmusicController) Post() {
-	//	if !checkAccount(this.Ctx) {
-	//		this.Redirect("/login", 302)
-	//		return
-	//	}
+
 	tid := this.Input().Get("tid")
 	name := this.Input().Get("name")
 	singer := this.Input().Get("singer")
@@ -50,7 +46,7 @@ func (this *AdminmusicController) Post() {
 
 func (this *AdminmusicController) Add() {
 	this.TplName = "addmusic.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
+
 }
 
 func (this *AdminmusicController) Modify() {

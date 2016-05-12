@@ -13,7 +13,6 @@ type AdminstageController struct {
 func (this *AdminstageController) Get() {
 	this.Data["IsStage"] = true
 	this.TplName = "adminstage.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
 	stage, err := models.GetAllStage(false)
 	if err != nil {
@@ -24,10 +23,7 @@ func (this *AdminstageController) Get() {
 }
 
 func (this *AdminstageController) Post() {
-	//	if !checkAccount(this.Ctx) {
-	//		this.Redirect("/login", 302)
-	//		return
-	//	}
+
 	tid := this.Input().Get("tid")
 	title := this.Input().Get("title")
 	content := this.Input().Get("content")
@@ -61,9 +57,9 @@ func (this *AdminstageController) View() {
 	}
 
 	// 解析 markdown 格式为 html
-  	contentMark := []byte(stage.Content)
-  	htmlBytes := ParseDoc(contentMark)
-  	stage.Content = string(htmlBytes)
+	contentMark := []byte(stage.Content)
+	htmlBytes := ParseDoc(contentMark)
+	stage.Content = string(htmlBytes)
 
 	this.Data["Stage"] = stage
 	this.Data["Tid"] = this.Ctx.Input.Param("0")
@@ -85,10 +81,6 @@ func (this *AdminstageController) Modify() {
 }
 
 func (this *AdminstageController) Delete() {
-	//	if !checkAccount(this.Ctx) {
-	//		this.Redirect("/login", 302)
-	//		return
-	//	}
 
 	err := models.DeleteStage(this.Input().Get("tid"))
 	if err != nil {

@@ -13,9 +13,8 @@ type AdminController struct {
 func (this *AdminController) Get() {
 	this.Data["IsHome"] = true
 	this.TplName = "admin.html"
-	this.Data["IsLogin"] = checkAccount(this.Ctx)
 
-	news, err := models.GetAllNews("",true)
+	news, err := models.GetAllNews("", true)
 	if err != nil {
 		beego.Error(err)
 	} else {
