@@ -42,7 +42,7 @@ func (this *StageController) Post() {
 	if err != nil {
 		beego.Error(err)
 	}
-	this.Redirect("/adminstage", 302)
+	this.Redirect("/stage", 302)
 }
 
 func (this *StageController) View() {
@@ -54,6 +54,11 @@ func (this *StageController) View() {
 		this.Redirect("/", 302)
 		return
 	}
+
+	// 解析 markdown 格式为 html
+  	contentMark := []byte(stage.Content)
+  	htmlBytes := ParseDoc(contentMark)
+  	stage.Content = string(htmlBytes)
 
 	this.Data["Stage"] = stage
 	this.Data["Tid"] = this.Ctx.Input.Param("0")

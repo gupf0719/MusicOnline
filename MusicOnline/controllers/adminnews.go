@@ -68,6 +68,11 @@ func (this *AdminnewsController) View() {
 		return
 	}
 
+	// 解析 markdown 格式为 html
+  	contentMark := []byte(news.Content)
+  	htmlBytes := ParseDoc(contentMark)
+  	news.Content = string(htmlBytes)
+
 	this.Data["News"] = news
 	this.Data["Tid"] = this.Ctx.Input.Param("0")
 }

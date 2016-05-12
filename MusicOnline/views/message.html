@@ -13,9 +13,10 @@
 		<div class="container" >
 			{{range .Messages}}
 			<h3>{{.Nickname}}  <small>{{.Time}}</small> </h3>
-			{{.Content}}
+			{{str2html .Content}}
 			{{end}}
 			<br/><br/><br/>
+
 			<h3>留言</h3>
 			<form method="post" action="/message/add">
 				<input type="hidden" name="tid" value="{{.Topic.Id}}">

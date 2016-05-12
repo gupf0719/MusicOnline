@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"MusicOnline/MusicOnline/models"
 
 	"github.com/astaxie/beego"
@@ -18,6 +19,15 @@ func (this *MessageController) Get() {
 	if err != nil {
 		beego.Error(err)
 		return
+	}
+
+	for _, message := range messages {
+		fmt.Println("msgcon"+message.Content)
+		// 解析 markdown 格式为 html
+		contentMark := []byte(message.Content)
+		htmlBytes := ParseDoc(contentMark)
+		message.Content = string(htmlBytes)
+		fmt.Println("msgcon"+message.Content)
 	}
 
 	this.Data["Messages"] = messages

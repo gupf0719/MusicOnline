@@ -31,7 +31,7 @@
 
 		<div class="container" >
 			<h1>{{.News.Title}} <small>{{.News.Category}} <a href="/adminnews/modify?tid={{.Tid}}" class="btn btn-default">修改文章</a></small></h1>
-			{{.News.Content}}
+			{{str2html .News.Content}}
 		</div>
 
 
