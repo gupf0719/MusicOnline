@@ -12,7 +12,10 @@
 
 
 		<div class="container" >
-			<h1>{{.News.Title}} <small>{{.News.Category}} </small></h1>
+			<h1>{{.News.Title}} &nbsp;&nbsp;&nbsp;&nbsp;<small>{{.News.Category}} </small></h1>
+			<p>{{.News.Time}}</p>
+			<p>共{{.News.Views}}次浏览</p>
+			<br/><br/>
 			{{str2html .News.Content}}
 		</div>
 
